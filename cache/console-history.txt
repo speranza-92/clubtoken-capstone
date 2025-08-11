@@ -1,0 +1,11 @@
+await nft.playerProfiles(0);
+await nft.mint("Andy Coffey", 33, "Flanker", 197, 102, "https://example.com/photo.jpg", "https://example.com/metadata.json");
+await nft.hasMinted(signer.address);
+const [signer] = await ethers.getSigners();
+await nft.nextTokenId();
+await nft.name();
+const nft = await ethers.getContractAt("MembershipNFT", "0x941B9E7dA15A6Cb4b486A035c1FBa54E178efF42");
+//Connect to your deployed NFT contract
+await nft.mint("Andrew Coffey", 33, "Flanker", 197, 102);
+const nft = await MembershipNFT.attach("0x941B9E7dA15A6Cb4b486A035c1FBa54E178efF42");
+const MembershipNFT = await ethers.getContractFactory("MembershipNFT");
