@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClubToken - Member Portal</title>
+    
+    <!-- Ethers.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    
+    <!-- World ID Widget -->
+    <script src="https://unpkg.com/@worldcoin/idkit-standalone/build/index.global.js"></script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #5a67d8;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .success { color: green; }
+        .error { color: red; }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        #walletAddress {
+            text-align: center;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ClubToken - Member Portal</h1>
+        
+        <!-- Wallet Connection -->
+        <div class="section">
+            <h2>Wallet Connection</h2>
+            <button id="connectWallet">Connect Wallet</button>
+            <div id="walletAddress"></div>
+        </div>
+        
+        <!-- Member Section -->
+        <div id="memberSection" class="section" style="display:none;">
+            <h2>Member Profile</h2>
+            <div id="profileStatus">Checking profile...</div>
+            
+            <!-- Mint Form -->
+            <div id="mintForm" style="display:none;">
+                <h3>Create Your Player Profile</h3>
+                <input type="text" id="playerName" placeholder="Name" />
+                <input type="number" id="playerAge" placeholder="Age" min="1" max="255" />
+                <input type="text" id="playerPosition" placeholder="Position (e.g., Forward)" />
+                <input type="number" id="playerHeight" placeholder="Height (cm)" min="1" max="255" />
+                <input type="number" id="playerWeight" placeholder="Weight (kg)" min="1" max="255" />
+                <button id="mintButton">Mint Profile NFT</button>
+            </div>
+        </div>
+        
+        <!-- Token Section -->
+        <div id="tokenSection" class="section" style="display:none;">
+            <h2>Bar Tokens</h2>
+            <div>Balance: <span id="tokenBalance">0</span> CLUB</div>
+            <div id="claimStatus"></div>
+            <button id="claimButton">Claim Monthly Token (with World ID)</button>
+            <button id="spendButton">Spend Token at Bar</button>
+        </div>
+        
+        <!-- Status Messages -->
+        <div id="statusMessage"></div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
